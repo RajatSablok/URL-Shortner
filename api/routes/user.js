@@ -8,6 +8,8 @@ const otpGenerator = require("otp-generator");
 const URL = require("../models/url");
 const User = require("../models/user");
 
+const checkAuth = require("../middleware/checkAuth");
+
 const EmailTemplates = require("../../emailTemplates");
 
 sgMail.setApiKey(process.env.SendgridAPIKey);
@@ -222,6 +224,26 @@ router.post("/login", async (req, res) => {
           }
         });
       }
+    })
+    .catch((err) => {
+      res.status(400).json({
+        message: "Something went wrong",
+        error: err.toString(),
+      });
+    });
+});
+
+//All URLs created by a user
+router.get("/all", checkAuth, async (req, res, next) => {
+  const createdBy = req.user.userId;
+
+  await URL.find({ createdBy })
+    .exec()
+    .then(async (urls) => {
+      res.status(200).json({
+        count: urls.length,
+        urls,
+      });
     })
     .catch((err) => {
       res.status(400).json({
