@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 
 require("dotenv").config();
 
+const urlRoutes = require("./api/routes/url");
+
 const app = express();
 
 const dbURI = process.env.dbURI;
@@ -37,6 +39,8 @@ app.use((req, res, next) => {
   next();
 });
 app.use(cors());
+
+app.use("/url", urlRoutes);
 
 const PORT = process.env.PORT || 3000;
 
