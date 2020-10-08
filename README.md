@@ -1,4 +1,4 @@
-# Teeny Tiny URL Shortner
+# URL Shortner
 
 > <Subtitle>
 > A URL shortener with analytics
@@ -16,8 +16,8 @@
 ## Instructions to run
 
 ```
-$ git clone https://github.com/RajatSablok/teeny-tiny-url-shortner.git
-$ cd teeny-tiny-url-shortner
+$ git clone https://github.com/RajatSablok/URL-Shortner.git
+$ cd URL-Shortner
 $ npm install
 ```
 
